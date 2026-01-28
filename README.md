@@ -1,4 +1,4 @@
-#  ARTIFY – 
+#  ARTIFY – A CREATIVE ARTWORK SHOWCASE PLATFORM
 
 **Live Website:**
 
