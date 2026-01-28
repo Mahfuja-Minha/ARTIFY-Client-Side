@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import MyLink from "../MyLink/MyLink";
-import { LogIn, MoonIcon } from "lucide-react";
 
 const Navbar = () => {
   const { user, signOutUserFunc, loading } = useContext(AuthContext);
@@ -74,6 +73,20 @@ const Navbar = () => {
             <li>
               <MyLink to="/myFavorites">My Favorites</MyLink>
             </li>
+            <li className="flex gap-2">
+              <div>
+                <span className="font-semibold">
+                  {theme === "dark" ? "Dark" : "Light"}
+                </span>
+
+                <input
+                  onChange={(e) => handleTheme(e.target.checked)}
+                  type="checkbox"
+                  defaultChecked={localStorage.getItem("theme") === "dark"}
+                  className="toggle cursor-pointer"
+                />
+              </div>
+            </li>
           </ul>
         </div>
 
@@ -102,21 +115,27 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <div className="navbar-end gap-2 md:gap-5">
-        <div className="flex flex-col md:flex-row gap-1 md:gap-2 items-center">
-          <MoonIcon className="hidden md:block" />
-          <input
-            onChange={(e) => handleTheme(e.target.checked)}
-            type="checkbox"
-            defaultChecked={localStorage.getItem("theme") === "dark"}
-            className="toggle cursor-pointer"
-          />
+      <div className="navbar-end gap-4">
+        <div className="hidden lg:block">
+          <div className="flex gap-2 items-center">
+            <span className="text-sm font-medium">
+              {theme === "dark" ? "Dark" : "Light"}
+            </span>
+
+            <input
+              onChange={(e) => handleTheme(e.target.checked)}
+              type="checkbox"
+              defaultChecked={localStorage.getItem("theme") === "dark"}
+              className="toggle cursor-pointer"
+            />
+          </div>
         </div>
+
         {loading ? (
           <span className="loading loading-spinner loading-sm"></span>
         ) : user ? (
           <div className="relative text-center">
-            <button className="btn" onClnpmick={() => setOpen(!open)}>
+            <button className="btn" onClick={() => setOpen(!open)}>
               <img
                 src={user?.photoURL || "https://via.placeholder.com/88"}
                 className="h-10 w-10 rounded-full"
@@ -151,7 +170,6 @@ const Navbar = () => {
               to="/login"
               className="border border-[#7C3AED] hover:bg-[#6D28D9] hover:text-white text-[#7C3AED] px-4 py-2 rounded-md font-semibold flex gap-1 items-center"
             >
-              {/* <LogIn className="w-5" /> */}
               Login
             </Link>
 
