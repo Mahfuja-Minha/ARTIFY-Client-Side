@@ -78,7 +78,6 @@ const Navbar = () => {
                 <span className="font-semibold">
                   {theme === "dark" ? "Dark" : "Light"}
                 </span>
-
                 <input
                   onChange={(e) => handleTheme(e.target.checked)}
                   type="checkbox"
@@ -116,6 +115,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end gap-4">
+        
         <div className="hidden lg:block">
           <div className="flex gap-2 items-center">
             <span className="text-sm font-medium">
